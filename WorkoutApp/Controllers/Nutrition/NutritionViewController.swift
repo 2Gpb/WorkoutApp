@@ -66,7 +66,7 @@ final class NutritionViewController: UIViewController {
         tableView.register(NutritionTableCell.self, forCellReuseIdentifier: NutritionTableCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "BackColor")
-        tableView.alwaysBounceVertical = false
+        tableView.isScrollEnabled = true
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -74,7 +74,7 @@ final class NutritionViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ]
         
         view.addSubview(tableView)

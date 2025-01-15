@@ -16,15 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let customNavigationController = UINavigationController(rootViewController: TabBarController())
-        customNavigationController.navigationBar.barStyle = .black
-        customNavigationController.navigationBar.tintColor = UIColor(named: "Greenn")
-        customNavigationController.navigationBar.isTranslucent = true
-//        customNavigationController.navigationBar.barTintColor = UIColor(named: "BackColor")
-//        customNavigationController.navigationBar.backgroundColor = UIColor(named: "BackColor")
 
-//        let firstNavigationController = UINavigationController(rootViewController: NutritionViewController())
-//        let tabBar = TabBarController()
-//        tabBar.viewControllers = [firstNavigationController]
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = customNavigationController

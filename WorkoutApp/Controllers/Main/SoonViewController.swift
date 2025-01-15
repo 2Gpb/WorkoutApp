@@ -36,6 +36,7 @@ class SoonViewController: UIViewController {
         let backButtonImage = UIImage(systemName: "arrow.left")
         let customBackButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem = customBackButton
+        navigationItem.leftBarButtonItem?.tintColor = .white
     }
     
     @objc func goBack() {

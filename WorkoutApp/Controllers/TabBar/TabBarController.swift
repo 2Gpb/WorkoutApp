@@ -33,7 +33,7 @@ final class TabBarController: UITabBarController {
         tabBar.backgroundColor = Colors.background
         tabBar.barTintColor = Colors.background
         tabBar.barStyle = .black
-        tabBar.layer.cornerRadius = 15
+        tabBar.layer.cornerRadius = 0
         tabBar.isTranslucent = false
         
         let mainViewController = MainViewController()

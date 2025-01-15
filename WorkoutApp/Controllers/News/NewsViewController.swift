@@ -58,11 +58,11 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     
     private func setUpApi() {
         
-        APIManager.shared.getNews()
-        { [weak self] values in
+        APIManager.shared.getNews { [weak self] values in
             guard let self else {
                 print("-self")
-                return }
+                return
+            }
             
             DispatchQueue.main.async {
                 self.titles = values

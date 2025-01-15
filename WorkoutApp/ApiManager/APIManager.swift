@@ -24,6 +24,7 @@ class APIManager {
                 completion(newsData.results)
             } else {
                 print("fail")
+                completion([])
             }
         }
         task.resume()

@@ -14,11 +14,9 @@ protocol AddViewControllerDelegate: AnyObject {
 class AddViewController: UIViewController{
     
     //MARK: - Properties
-    
-    var delegate: AddViewControllerDelegate?
+    weak var delegate: AddViewControllerDelegate?
     
     //MARK: - SubViews
-    
     private let mainTitle = UILabel()
     private let nameTextField = UITextField()
     private let kcalTextField = UITextField()
@@ -86,7 +84,7 @@ class AddViewController: UIViewController{
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         )
         
-        nameTextField.textColor = .white
+        nameTextField.textColor = .black
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.borderColor = UIColor(named: "Greenn")!.cgColor
         nameTextField.layer.cornerRadius = 15
@@ -223,7 +221,7 @@ class AddViewController: UIViewController{
             guard let self else { return }
             
             if let name = nameTextField.text,
-                let kcal = kcalTextField.text, let protein = proteinTextField.text, let fats = fatsTextField.text, let carbs = carbsTextField.text {
+               let kcal = kcalTextField.text, let protein = proteinTextField.text, let fats = fatsTextField.text, let carbs = carbsTextField.text {
                 
                 self.delegate?.update(name: name, kcal: kcal, protein: protein, fats: fats, carbs: carbs)
                 self.navigationController?.popViewController(animated: true)
