@@ -8,9 +8,7 @@
 import UIKit
 
 final class NewsViewController: UIViewController, UICollectionViewDelegate {
-    
-    //MARK: - Constant
-    
+    // MARK: - Constant
     private enum Constant {
         enum Collection {
             static let cellHeight = 150.0
@@ -21,13 +19,11 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    //MARK: - Properties
-    
-    let colors = ["Greenn", "LightGrayy"]
+    // MARK: - Variables
     var titles: [Result] = []
     
-    //MARK: - SubViews
-    
+    //MARK: - Private fields
+    private let colors = ["Greenn", "LightGrayy"]
     private let mainTitle = UILabel()
     private let searchButton = UIButton()
     private let headerStackView = UIStackView()
@@ -35,20 +31,16 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let checkButton = UIButton()
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
         
         setUpApi()
@@ -57,7 +49,6 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func setUpApi() {
-        
         APIManager.shared.getNews { [weak self] values in
             guard let self else {
                 print("-self")
@@ -72,14 +63,12 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func setUpMainTitle() {
-        
         mainTitle.text = "News"
         mainTitle.textColor = .white
         mainTitle.font = .systemFont(ofSize: 32, weight: .bold)
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let titleConstraint = [
-            
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             mainTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainTitle.widthAnchor.constraint(equalToConstant: 100)
@@ -91,7 +80,6 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func setUpCollection() {
-        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.register(NewsCollectionCell.self, forCellWithReuseIdentifier: NewsCollectionCell.identifier)
@@ -99,7 +87,6 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         let collectionConsraints = [
-            
             collectionView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 0),
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
@@ -111,56 +98,50 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
     }
 }
     
-    //MARK: - UICollectionViewDataSource
-    
-    extension NewsViewController: UICollectionViewDataSource {
-        
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            titles.count
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: NewsCollectionCell.identifier,
-                for: indexPath
-            ) as? NewsCollectionCell else { return UICollectionViewCell() }
-            
-            if indexPath.item % 2 == 0 {
-                cell.configure(color: colors[0], nameStudio: titles[indexPath.item].pubDate, nameTitle: titles[indexPath.item].title, nameAutor: titles[indexPath.item].creator?[0] ?? "-")
-            } else {
-                cell.configure(color: colors[1], nameStudio: titles[indexPath.item].pubDate, nameTitle: titles[indexPath.item].title, nameAutor: titles[indexPath.item].creator?[0] ?? "-")
-            }
-            
-            return cell
-        }
+// MARK: - UICollectionViewDataSource
+extension NewsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        titles.count
     }
     
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
-    extension NewsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: NewsCollectionCell.identifier,
+            for: indexPath
+        ) as? NewsCollectionCell else { return UICollectionViewCell() }
         
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            self.navigationController?.pushViewController(SoonViewController(), animated: true)
+        if indexPath.item % 2 == 0 {
+            cell.configure(color: colors[0], nameStudio: titles[indexPath.item].pubDate, nameTitle: titles[indexPath.item].title, nameAutor: titles[indexPath.item].creator?[0] ?? "-")
+        } else {
+            cell.configure(color: colors[1], nameStudio: titles[indexPath.item].pubDate, nameTitle: titles[indexPath.item].title, nameAutor: titles[indexPath.item].creator?[0] ?? "-")
         }
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-            let widthPeritem = view.frame.width - 60
-            
-            return CGSize(width: widthPeritem, height: 185)
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            Constant.Collection.sectionInsets
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            Constant.Collection.interitemSpacing
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            Constant.Collection.lineSpacing
-        }
+        return cell
     }
+}
 
+// MARK: - UICollectionViewDelegateFlowLayout
+extension NewsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(SoonViewController(), animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let widthPeritem = view.frame.width - 60
+        
+        return CGSize(width: widthPeritem, height: 185)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        Constant.Collection.sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        Constant.Collection.interitemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        Constant.Collection.lineSpacing
+    }
+}

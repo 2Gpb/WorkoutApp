@@ -9,18 +9,14 @@
 import UIKit
 
 final class NutritionTableCell: UITableViewCell {
-
     // MARK: - Identifier
-
     static let identifier = "TableCell"
 
-    // MARK: - Properties
-
+    // MARK: - Private variables
     private var onTapButton: (() -> Void)?
+
+    // MARK: - Private fields
     private let images = [UIImage(named: "protein"), UIImage(named: "fats"), UIImage(named: "carbs")]
-
-    // MARK: - Subviews
-
     private let mainTitle = UILabel()
     private let starButton = UIButton()
     private let kcalLabel = UILabel()
@@ -32,11 +28,9 @@ final class NutritionTableCell: UITableViewCell {
     private let carbsImg = UIImageView()
     private let stack = UIStackView()
 
-    // MARK: - Init
-
+    // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setUp()
     }
 
@@ -45,7 +39,6 @@ final class NutritionTableCell: UITableViewCell {
     }
 
     // MARK: - Lifecycle
-
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -57,9 +50,7 @@ final class NutritionTableCell: UITableViewCell {
     }
 
     // MARK: - Methods
-
     func configure(mainTitle: String, kcal: String, protein: String, fats: String, carbs: String) {
-        
         self.mainTitle.text = mainTitle
         self.kcalLabel.text = kcal + " kcal"
         self.protein.text = protein
@@ -67,10 +58,8 @@ final class NutritionTableCell: UITableViewCell {
         self.carbs.text = carbs
     }
     
-    //MARK: - SetUp
-
+    // MARK: - SetUp
     private func setUp() {
-        
         contentView.backgroundColor = UIColor(named: "BackColor")
         
         setUpTitle()
@@ -82,13 +71,11 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpTitle() {
-        
         mainTitle.textColor = .white
         mainTitle.font = .systemFont(ofSize: 17, weight: .medium)
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let titleConstraints = [
-
             mainTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             mainTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
             mainTitle.heightAnchor.constraint(equalToConstant: 20)
@@ -99,7 +86,6 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpStarButton() {
-        
         starButton.setImage(UIImage(systemName: "star"), for: .normal)
         starButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
         starButton.tintColor = UIColor(named: "Greenn")
@@ -118,13 +104,11 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpKcalLabel() {
-        
         kcalLabel.textColor = .lightGray
         kcalLabel.font = .systemFont(ofSize: 17, weight: .medium)
         kcalLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let kcalConstraints = [
-        
             kcalLabel.rightAnchor.constraint(equalTo: starButton.leftAnchor, constant: -10),
             kcalLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
@@ -134,9 +118,7 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpPFC() {
-        
         [protein, fats, carbs].forEach {
-            
             $0.textColor = .lightGray
             $0.font = .systemFont(ofSize: 17, weight: .medium)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +126,6 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpPFCImage() {
-        
         var q = 0
         for img in [proteinImg, fatsImg, carbsImg] {
             
@@ -157,7 +138,6 @@ final class NutritionTableCell: UITableViewCell {
     }
     
     private func setUpStack() {
-        
         stack.axis = .horizontal
         stack.spacing = 5
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -170,7 +150,6 @@ final class NutritionTableCell: UITableViewCell {
         stack.addArrangedSubview(carbs)
         
         let stackConstraints = [
-        
             stack.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 13),
             stack.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 30)
         ]

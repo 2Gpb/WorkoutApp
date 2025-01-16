@@ -8,14 +8,11 @@
 import Foundation
 import UIKit
 
-class NewsCollectionCell: UICollectionViewCell {
-    
+final class NewsCollectionCell: UICollectionViewCell {
     // MARK: - Identifier
-    
     static let identifier = "NewsCollectionCell"
     
-    // MARK: - Subviews
-    
+    // MARK: - Private fields
     private let nameStudio = UILabel()
     private let nameTitle = UILabel()
     private let nameAutor = UILabel()
@@ -23,8 +20,7 @@ class NewsCollectionCell: UICollectionViewCell {
     private let headerStack = UIStackView()
     private let stack = UIStackView()
     
-    // MARK: - Init
-    
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -34,20 +30,15 @@ class NewsCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle
-    
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         nameStudio.text = nil
         nameTitle.text = nil
         nameAutor.text = nil
     }
     
     // MARK: - Methods
-    
     func configure(color: String, nameStudio: String, nameTitle: String, nameAutor: String) {
-        
         if UIColor(named: color) == UIColor(named: "Greenn") {
             contentView.backgroundColor = UIColor(named: "BackColor")
             contentView.layer.borderWidth = 1
@@ -60,9 +51,7 @@ class NewsCollectionCell: UICollectionViewCell {
     }
     
     // MARK: - SetUp
-    
     private func setUp() {
-        
         contentView.backgroundColor = UIColor(named: "LightGrayy")
         contentView.layer.cornerRadius = 15
         contentView.layer.cornerCurve = .continuous
@@ -75,14 +64,12 @@ class NewsCollectionCell: UICollectionViewCell {
     }
     
     private func setUpNameStudio() {
-        
         nameStudio.font = .systemFont(ofSize: 17, weight: .medium)
         nameStudio.textColor = .white
         nameStudio.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpButton() {
-        
         button.image = UIImage(systemName: "chevron.forward.circle.fill")
         button.tintColor = UIColor(named: "Greenn")
         button.contentMode = .scaleAspectFill
@@ -91,7 +78,6 @@ class NewsCollectionCell: UICollectionViewCell {
     }
     
     private func setUpHeaderStack() {
-        
         headerStack.axis = .horizontal
         headerStack.distribution = .equalSpacing
         headerStack.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +86,6 @@ class NewsCollectionCell: UICollectionViewCell {
         headerStack.addArrangedSubview(button)
         
         let headerStackConstraints = [
-            
             headerStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             headerStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             headerStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
@@ -111,14 +96,12 @@ class NewsCollectionCell: UICollectionViewCell {
     }
     
     private func setUpDescription() {
-        
         nameTitle.font = .systemFont(ofSize: 16, weight: .medium)
         nameTitle.textColor = .white
         nameTitle.numberOfLines = 3
         nameTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let titleConstraints = [
-            
             nameTitle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             nameTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
@@ -129,13 +112,11 @@ class NewsCollectionCell: UICollectionViewCell {
     }
     
     private func setUpNameAutor() {
-        
         nameAutor.font = .systemFont(ofSize: 16, weight: .medium)
         nameAutor.textColor = .white
         nameAutor.translatesAutoresizingMaskIntoConstraints = false
         
         let autorConstraints = [
-            
             nameAutor.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             nameAutor.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             nameAutor.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)

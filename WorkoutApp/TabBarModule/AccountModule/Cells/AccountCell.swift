@@ -8,18 +8,15 @@
 import Foundation
 import UIKit
 
-class AccountCell: UIView {
-    
-    //MARK: - SubViews
-    
+final class AccountCell: UIView {
+    // MARK: - Private fields
     private let image = UIImageView()
     private let mainTitle = UILabel()
     private let subTitle = UILabel()
     private let stack = UIStackView()
     private let arrowImg = UIImageView()
     
-    //MARK: - Init
-    
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -29,8 +26,7 @@ class AccountCell: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
-    
+    // MARK: - Methods
     func configure(title: String, subTitle: String, img: String) {
         
         image.image = UIImage(systemName: img)
@@ -43,10 +39,8 @@ class AccountCell: UIView {
         }
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         setUpImage()
         setUpMainTitle()
         setUpSubTitle()
@@ -55,7 +49,6 @@ class AccountCell: UIView {
     }
     
     private func setUpImage() {
-        
         image.tintColor = UIColor(named: "Greenn")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints  = false
@@ -73,7 +66,6 @@ class AccountCell: UIView {
     }
     
     private func setUpMainTitle() {
-        
         mainTitle.font = .systemFont(ofSize: 17, weight: .medium)
         mainTitle.textColor = .white
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +81,6 @@ class AccountCell: UIView {
     }
     
     private func setUpSubTitle() {
-        
         subTitle.font = .systemFont(ofSize: 15, weight: .light)
         subTitle.textColor = .white
         subTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +97,6 @@ class AccountCell: UIView {
     }
     
     private func setUpLabelStack() {
-        
         stack.axis = .vertical
         stack.spacing = 10
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -126,14 +116,12 @@ class AccountCell: UIView {
     }
     
     private func setUpArrowImg() {
-        
         arrowImg.image = UIImage(systemName: "chevron.right")
         arrowImg.tintColor = UIColor(named: "Greenn")
         arrowImg.contentMode = .scaleAspectFill
         arrowImg.translatesAutoresizingMaskIntoConstraints = false
         
         let arrowConstraints = [
-        
             arrowImg.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
             arrowImg.centerYAnchor.constraint(equalTo: centerYAnchor),
             arrowImg.widthAnchor.constraint(equalToConstant: 17)
@@ -144,13 +132,13 @@ class AccountCell: UIView {
     }
     
     private func viewTappedSetUp() {
-            
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         addGestureRecognizer(tapGesture)
     }
-
-    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
     
+    // MARK: - Actions
+    @objc
+    private func handleTap(_ gesture: UITapGestureRecognizer) {
         print("CustomView tapped!")
     }
 }

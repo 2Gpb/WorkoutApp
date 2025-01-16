@@ -8,26 +8,21 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-    
-    //MARK: - Comstant
-    
+    // MARK: - Constant
     enum Colors {
         static var active = UIColor(named: "Greenn")
         static var inactive = UIColor.white
         static var background = UIColor.black
     }
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTabs()
+        setUpTabs()
     }
     
-    //MARK: - Set Up
-
-    func configureTabs() {
-        
+    // MARK: - SetUp
+    func setUpTabs() {
         tabBar.tintColor = Colors.active
         tabBar.unselectedItemTintColor = Colors.inactive
         tabBar.backgroundColor = Colors.background
@@ -36,13 +31,13 @@ final class TabBarController: UITabBarController {
         tabBar.layer.cornerRadius = 0
         tabBar.isTranslucent = false
         
-        let mainViewController = MainViewController()
+        let homeViewController = HomeViewController()
         let trainViewController = TrainViewController()
         let threeViewController = NewsViewController()
         let nutritionViewController = NutritionViewController()
         let accountViewController = AccountViewController()
 
-        mainViewController.tabBarItem = .init(
+        homeViewController.tabBarItem = .init(
             title: "Home",
             image: UIImage(systemName: "house.fill"),
             tag: 0
@@ -72,7 +67,15 @@ final class TabBarController: UITabBarController {
             tag: 4
         )
 
-        setViewControllers([mainViewController, trainViewController, threeViewController, nutritionViewController, accountViewController], animated: true)
+        setViewControllers(
+            [
+                homeViewController,
+                trainViewController,
+                threeViewController,
+                nutritionViewController,
+                accountViewController
+            ],
+            animated: true
+        )
     }
 }
-

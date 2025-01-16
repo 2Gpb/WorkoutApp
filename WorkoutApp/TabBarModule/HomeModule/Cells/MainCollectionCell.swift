@@ -8,14 +8,11 @@
 import Foundation
 import UIKit
 
-class MainCollectionCell: UICollectionViewCell {
-    
+final class HomeCollectionCell: UICollectionViewCell {
     // MARK: - Identifier
-    
-    static let identifier = "MainCollectionCell"
+    static let identifier = "HomeCollectionCell"
 
-    // MARK: - Subviews
-    
+    // MARK: - Private fields
     private let mainTitle = UILabel()
     private let button = UIImageView()
     private let headerStack = UIStackView()
@@ -23,8 +20,7 @@ class MainCollectionCell: UICollectionViewCell {
     private let subTitle = UILabel()
     private let stack = UIStackView()
     
-    // MARK: - Init
-
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -33,9 +29,7 @@ class MainCollectionCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Lifecycle
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         mainTitle.text = nil
@@ -44,9 +38,7 @@ class MainCollectionCell: UICollectionViewCell {
     }
 
     // MARK: - Methods
-
     func configure(color: String, title: String, img: String, label: String) {
-
         if UIColor(named: color) == UIColor(named: "Greenn") {
             contentView.backgroundColor = UIColor(named: "BackColor")
             contentView.layer.borderWidth = 1
@@ -59,9 +51,7 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     // MARK: - SetUp
-    
     private func setUp() {
-        
         contentView.backgroundColor = UIColor(named: "LightGrayy")
         contentView.layer.cornerRadius = 15
         contentView.layer.cornerCurve = .continuous
@@ -76,14 +66,12 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     private func setUpMainTitle() {
-        
         mainTitle.font = .systemFont(ofSize: 17, weight: .medium)
         mainTitle.textColor = .white
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpButton() {
-        
         button.image = UIImage(systemName: "chevron.forward.circle.fill")
         button.tintColor = UIColor(named: "Greenn")
         button.contentMode = .scaleAspectFill
@@ -92,7 +80,6 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     private func setUpImage() {
-        
         image.heightAnchor.constraint(equalToConstant: 60).isActive = true
         image.tintColor = UIColor(named: "Greenn")
         image.contentMode = .scaleAspectFit
@@ -100,14 +87,12 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     private func setUpSubTitle() {
-        
         subTitle.font = .systemFont(ofSize: 16, weight: .medium)
         subTitle.textColor = .white
         subTitle.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setUpHeaderStack() {
-        
         headerStack.axis = .horizontal
         headerStack.distribution = .equalSpacing
         headerStack.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +101,6 @@ class MainCollectionCell: UICollectionViewCell {
         headerStack.addArrangedSubview(button)
         
         let headerStackConstraints = [
-        
             headerStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             headerStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             headerStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
@@ -127,17 +111,14 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     private func setUpStack() {
-        
         stack.axis = .vertical
         stack.spacing = 25
         stack.translatesAutoresizingMaskIntoConstraints = false
         
-
         stack.addArrangedSubview(image)
         stack.addArrangedSubview(subTitle)
         
         let stackConstraints = [
-        
             stack.topAnchor.constraint(equalTo: headerStack.topAnchor, constant: 40),
             stack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
             stack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -25)
@@ -146,5 +127,4 @@ class MainCollectionCell: UICollectionViewCell {
         contentView.addSubview(stack)
         NSLayoutConstraint.activate(stackConstraints)
     }
-
 }

@@ -7,10 +7,8 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
-    
-    //MARK: - Constant
-    
+final class HomeViewController: UIViewController {
+    // MARK: - Constant
     private enum Constant {
         enum Collection {
             static let cellHeight = 150.0
@@ -21,15 +19,11 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: - Properties
-    
-    let colors = ["Greenn", "LightGrayy"]
-    let titles = ["Calories", "Weight", "Water", "Steps"]
-    let images = ["fork.knife.circle.fill", "chart.xyaxis.line", "waterbottle.fill", "figure.walk.circle.fill"]
-    let subTitles = ["1300 cal", "67 kg", "1.7 liters", "8546 steps"]
-    
-    //MARK: - SubViews
-    
+    // MARK: - Pfrivate ields
+    private let colors = ["Greenn", "LightGrayy"]
+    private let titles = ["Calories", "Weight", "Water", "Steps"]
+    private let images = ["fork.knife.circle.fill", "chart.xyaxis.line", "waterbottle.fill", "figure.walk.circle.fill"]
+    private let subTitles = ["1300 cal", "67 kg", "1.7 liters", "8546 steps"]
     private let mainTitle = UILabel()
     private let searchButton = UIButton()
     private let headerStackView = UIStackView()
@@ -37,20 +31,16 @@ final class MainViewController: UIViewController {
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let checkButton = UIButton()
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
         
         setUpMainTitle()
@@ -62,7 +52,6 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpMainTitle() {
-        
         mainTitle.text = "Hello!"
         mainTitle.textColor = .white
         mainTitle.font = .systemFont(ofSize: 32, weight: .bold)
@@ -70,7 +59,6 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpSearchButton() {
-        
         searchButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         searchButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         searchButton.layer.cornerRadius = 20
@@ -81,7 +69,6 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpHeaderStackView() {
-        
         headerStackView.axis = .horizontal
         headerStackView.alignment = .center
         headerStackView.distribution = .equalSpacing
@@ -91,7 +78,6 @@ final class MainViewController: UIViewController {
         headerStackView.addArrangedSubview(searchButton)
         
         let headerStackViewConstarints = [
-        
             headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             headerStackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 30),
             headerStackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -30),
@@ -103,14 +89,12 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpSubTitle() {
-        
         subTitle.text = "Metrics"
         subTitle.textColor = .white
         subTitle.font = .systemFont(ofSize: 22, weight: .bold)
         subTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let subTitleConstraints = [
-        
             subTitle.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 40),
             subTitle.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 30)
         ]
@@ -120,7 +104,6 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpCheckButton() {
-        
         checkButton.backgroundColor = UIColor(named: "Greenn")
         checkButton.setTitle("Check your health score", for: .normal)
         checkButton.setTitleColor(.black, for: .normal)
@@ -135,9 +118,7 @@ final class MainViewController: UIViewController {
             
         }, for: .touchUpInside)
         
-        
         let checkButtonConstraints = [
-        
             checkButton.heightAnchor.constraint(equalToConstant: 56),
             checkButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 30),
             checkButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -30),
@@ -149,15 +130,13 @@ final class MainViewController: UIViewController {
     }
     
     private func setUpCollection() {
-        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        collectionView.register(MainCollectionCell.self, forCellWithReuseIdentifier: MainCollectionCell.identifier)
+        collectionView.register(HomeCollectionCell.self, forCellWithReuseIdentifier: HomeCollectionCell.identifier)
         collectionView.alwaysBounceVertical = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         let collectionConsraints = [
-        
             collectionView.topAnchor.constraint(equalTo: subTitle.bottomAnchor, constant: 0),
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
@@ -169,54 +148,49 @@ final class MainViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionViewDataSource
-
-extension MainViewController: UICollectionViewDataSource {
-
+// MARK: - UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         titles.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MainCollectionCell.identifier,
-                for: indexPath
-            ) as? MainCollectionCell else { return UICollectionViewCell() }
-            
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: HomeCollectionCell.identifier,
+            for: indexPath
+        ) as? HomeCollectionCell else { return UICollectionViewCell() }
+        
         if indexPath.item % 4 == 0 || indexPath.item % 4 == 3 {
             cell.configure(color: colors[0], title: titles[indexPath.item], img: images[indexPath.item], label: subTitles[indexPath.item])
         } else {
             cell.configure(color: colors[1], title: titles[indexPath.item], img: images[indexPath.item], label: subTitles[indexPath.item])
         }
-
-            return cell
+        
+        return cell
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.navigationController?.pushViewController(SoonViewController(), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      
-        let widthPeritem = view.frame.width/2 - 40
-
-            return CGSize(width: widthPeritem, height: 185)
-    }
         
+        let widthPeritem = view.frame.width/2 - 40
+        
+        return CGSize(width: widthPeritem, height: 185)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         Constant.Collection.sectionInsets
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         Constant.Collection.interitemSpacing
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         Constant.Collection.lineSpacing
     }

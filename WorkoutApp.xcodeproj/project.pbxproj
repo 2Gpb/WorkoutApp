@@ -84,10 +84,9 @@
 			children = (
 				D0B64D982B2DF57900E51016 /* Models */,
 				D07420D92B2DF0940066D06E /* ApiManager */,
-				D04D6BA42B24BA5F00495445 /* Cells */,
-				D00A5D822B21BC8400B455B0 /* Controllers */,
+				D0DDD92A2B24F2CE008067B2 /* TabBarModule */,
 				D00A5D802B21BC5E00B455B0 /* App */,
-				D00A5D812B21BC7000B455B0 /* Resources */,
+				D00A5D812B21BC7000B455B0 /* Beauty */,
 			);
 			path = WorkoutApp;
 			sourceTree = "<group>";
@@ -101,47 +100,22 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		D00A5D812B21BC7000B455B0 /* Resources */ = {
+		D00A5D812B21BC7000B455B0 /* Beauty */ = {
 			isa = PBXGroup;
 			children = (
 				D00A5D752B21BBBD00B455B0 /* Assets.xcassets */,
 				D00A5D772B21BBBD00B455B0 /* LaunchScreen.storyboard */,
 				D00A5D7A2B21BBBD00B455B0 /* Info.plist */,
 			);
-			path = Resources;
+			path = Beauty;
 			sourceTree = "<group>";
 		};
-		D00A5D822B21BC8400B455B0 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D0DDD92A2B24F2CE008067B2 /* TabBar */,
-				D0DDD9242B24F25A008067B2 /* Main */,
-				D0DDD9252B24F27A008067B2 /* Train */,
-				D0DDD9262B24F288008067B2 /* News */,
-				D0DDD9272B24F29A008067B2 /* Nutrition */,
-				D0DDD9292B24F2C0008067B2 /* Account */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D04D6BA42B24BA5F00495445 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D0DDD92D2B2502AE008067B2 /* Main */,
-				D0DDD92C2B2502A8008067B2 /* Train */,
-				D07420D62B2DE5390066D06E /* News */,
-				D0DDD92B2B250296008067B2 /* Nutrition */,
-				D0DDD9302B25C17E008067B2 /* Account */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		D07420D62B2DE5390066D06E /* News */ = {
+		D07420D62B2DE5390066D06E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D07420D72B2DE5670066D06E /* NewsCollectionCell.swift */,
 			);
-			path = News;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D07420D92B2DF0940066D06E /* ApiManager */ = {
@@ -152,6 +126,14 @@
 			path = ApiManager;
 			sourceTree = "<group>";
 		};
+		D0ACC5302D3928B5009BA667 /* SoonModule */ = {
+			isa = PBXGroup;
+			children = (
+				D0DDD9362B261EDD008067B2 /* SoonViewController.swift */,
+			);
+			path = SoonModule;
+			sourceTree = "<group>";
+		};
 		D0B64D982B2DF57900E51016 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,94 +142,104 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D0DDD9242B24F25A008067B2 /* Main */ = {
+		D0DDD9242B24F25A008067B2 /* HomeModule */ = {
 			isa = PBXGroup;
 			children = (
+				D0DDD92D2B2502AE008067B2 /* Cells */,
 				D00A5D702B21BBBC00B455B0 /* MainViewController.swift */,
-				D0DDD9362B261EDD008067B2 /* SoonViewController.swift */,
 			);
-			path = Main;
+			path = HomeModule;
 			sourceTree = "<group>";
 		};
-		D0DDD9252B24F27A008067B2 /* Train */ = {
+		D0DDD9252B24F27A008067B2 /* TrainModule */ = {
 			isa = PBXGroup;
 			children = (
+				D0DDD92C2B2502A8008067B2 /* Cells */,
 				D04D6BAD2B24BAEF00495445 /* TrainViewController.swift */,
 			);
-			path = Train;
+			path = TrainModule;
 			sourceTree = "<group>";
 		};
-		D0DDD9262B24F288008067B2 /* News */ = {
+		D0DDD9262B24F288008067B2 /* NewsModule */ = {
 			isa = PBXGroup;
 			children = (
+				D07420D62B2DE5390066D06E /* Cells */,
 				D0DDD92E2B251ABE008067B2 /* NewsViewController.swift */,
 			);
-			path = News;
+			path = NewsModule;
 			sourceTree = "<group>";
 		};
-		D0DDD9272B24F29A008067B2 /* Nutrition */ = {
+		D0DDD9272B24F29A008067B2 /* NutritionModule */ = {
 			isa = PBXGroup;
 			children = (
+				D0DDD92B2B250296008067B2 /* Cells */,
 				D04D6BB42B24BB2800495445 /* NutritionViewController.swift */,
-				D0DDD9282B24F2A4008067B2 /* AddDish */,
 			);
-			path = Nutrition;
+			path = NutritionModule;
 			sourceTree = "<group>";
 		};
-		D0DDD9282B24F2A4008067B2 /* AddDish */ = {
+		D0DDD9282B24F2A4008067B2 /* AddDishModule */ = {
 			isa = PBXGroup;
 			children = (
 				D04D6BB62B24BB3A00495445 /* AddViewController.swift */,
 			);
-			path = AddDish;
+			path = AddDishModule;
 			sourceTree = "<group>";
 		};
-		D0DDD9292B24F2C0008067B2 /* Account */ = {
+		D0DDD9292B24F2C0008067B2 /* AccountModule */ = {
 			isa = PBXGroup;
 			children = (
+				D0DDD9302B25C17E008067B2 /* Cells */,
 				D04D6BB22B24BB1400495445 /* AccountViewController.swift */,
 			);
-			path = Account;
+			path = AccountModule;
 			sourceTree = "<group>";
 		};
-		D0DDD92A2B24F2CE008067B2 /* TabBar */ = {
+		D0DDD92A2B24F2CE008067B2 /* TabBarModule */ = {
 			isa = PBXGroup;
 			children = (
+				D0DDD9242B24F25A008067B2 /* HomeModule */,
+				D0DDD9252B24F27A008067B2 /* TrainModule */,
+				D0DDD9262B24F288008067B2 /* NewsModule */,
+				D0DDD9272B24F29A008067B2 /* NutritionModule */,
+				D0DDD9282B24F2A4008067B2 /* AddDishModule */,
+				D0DDD9292B24F2C0008067B2 /* AccountModule */,
+				D0ACC5302D3928B5009BA667 /* SoonModule */,
 				D04D6BAB2B24BAD300495445 /* TabBarController.swift */,
 			);
-			path = TabBar;
+			path = TabBarModule;
 			sourceTree = "<group>";
 		};
-		D0DDD92B2B250296008067B2 /* Nutrition */ = {
+		D0DDD92B2B250296008067B2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D04D6BA52B24BA9100495445 /* NutritionTableCell.swift */,
 			);
-			path = Nutrition;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		D0DDD92C2B2502A8008067B2 /* Train */ = {
+		D0DDD92C2B2502A8008067B2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D04D6BA72B24BAA100495445 /* TrainCollectionCell.swift */,
 			);
-			path = Train;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		D0DDD92D2B2502AE008067B2 /* Main */ = {
+		D0DDD92D2B2502AE008067B2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D04D6BA92B24BAAF00495445 /* MainCollectionCell.swift */,
 			);
-			path = Main;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		D0DDD9302B25C17E008067B2 /* Account */ = {
+		D0DDD9302B25C17E008067B2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D0495EF42B2A024300A3B847 /* AccountCell.swift */,
 			);
-			path = Account;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WorkoutApp/Resources/Info.plist;
+				INFOPLIST_FILE = WorkoutApp/Beauty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -508,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WorkoutApp/Resources/Info.plist;
+				INFOPLIST_FILE = WorkoutApp/Beauty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

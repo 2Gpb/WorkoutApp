@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - NewsData
-
 struct NewsData: Codable {
     let status: String
     let totalResults: Int
@@ -17,7 +16,6 @@ struct NewsData: Codable {
 }
 
 // MARK: - Result
-
 struct Result: Codable {
     let articleID, title: String
     let link: String
@@ -48,15 +46,9 @@ enum Language: String, Codable {
 }
 
 // MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
+final class JSONNull: Codable {
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
-    }
-
-    public var hashValue: Int {
-        return 0
     }
 
     public init() {}

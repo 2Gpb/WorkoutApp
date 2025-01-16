@@ -7,16 +7,15 @@
 
 import UIKit
 
-protocol AddViewControllerDelegate: AnyObject {
+protocol AddDishViewControllerDelegate: AnyObject {
     func update(name: String, kcal: String, protein: String, fats: String, carbs: String)
 }
 
-class AddViewController: UIViewController{
+final class AddDishViewController: UIViewController{
+    // MARK: - Variables
+    weak var delegate: AddDishViewControllerDelegate?
     
-    //MARK: - Properties
-    weak var delegate: AddViewControllerDelegate?
-    
-    //MARK: - SubViews
+    // MARK: - Private fields
     private let mainTitle = UILabel()
     private let nameTextField = UITextField()
     private let kcalTextField = UITextField()
@@ -25,17 +24,14 @@ class AddViewController: UIViewController{
     private let carbsTextField = UITextField()
     private let doneButton = UIButton()
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
 
         setUpNavigation()
@@ -49,19 +45,13 @@ class AddViewController: UIViewController{
     }
     
     private func setUpNavigation() {
-        
         self.navigationController?.isNavigationBarHidden = false
         let backButtonImage = UIImage(systemName: "arrow.left")
         let customBackButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem = customBackButton
     }
     
-    @objc func goBack() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     private func setUpTitle() {
-        
         mainTitle.text = "Enter your own dish"
         mainTitle.textColor = .white
         mainTitle.font = .boldSystemFont(ofSize: 32)
@@ -69,7 +59,6 @@ class AddViewController: UIViewController{
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let mainTitleConstraints = [
-            
             mainTitle.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ]
@@ -209,7 +198,6 @@ class AddViewController: UIViewController{
     }
     
     private func setUpDoneButton() {
-        
         doneButton.setTitle("Done", for: .normal)
         doneButton.backgroundColor = UIColor(named: "Greenn")
         doneButton.setTitleColor(.black, for: .normal)
@@ -238,5 +226,10 @@ class AddViewController: UIViewController{
         view.addSubview(doneButton)
         NSLayoutConstraint.activate(doneButtonConstraints)
     }
-
+    
+    // MARK: - Actions
+    @objc
+    private func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
 }

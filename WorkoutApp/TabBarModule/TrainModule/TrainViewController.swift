@@ -8,9 +8,7 @@
 import UIKit
 
 final class TrainViewController: UIViewController {
-    
-    //MARK: - Constant
-    
+    // MARK: - Constant
     private enum Constant {
         enum Collection {
             static let cellHeight = 140.0
@@ -21,31 +19,25 @@ final class TrainViewController: UIViewController {
         }
     }
     
-    // MARK: - Properties
+    // MARK: - Private variables
+    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    // MARK: - Private fields
     private let trainings = ["Strength", "Cardio", "Fitness"]
     private let workouts = ["35 workout", "12 workout", "27 workout"]
     private let images = ["Gym1", "Gym2", "Gym3"]
-    
-    //MARK: - SubViews
-    
     private let mainTitle = UILabel()
-    private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
 
         setUpTitle()
@@ -53,7 +45,6 @@ final class TrainViewController: UIViewController {
     }
     
     private func setUpCollection() {
-    
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.register(TrainCollectionCell.self, forCellWithReuseIdentifier: TrainCollectionCell.identifier)
@@ -61,7 +52,6 @@ final class TrainViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         let collectionConsraints = [
-        
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 110),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -73,7 +63,6 @@ final class TrainViewController: UIViewController {
     }
     
     private func setUpTitle() {
-        
         mainTitle.text = "Choose your Training program"
         mainTitle.numberOfLines = 2
         mainTitle.textColor = .white
@@ -82,7 +71,6 @@ final class TrainViewController: UIViewController {
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let mainTitleConstraints = [
-            
             mainTitle.widthAnchor.constraint(equalToConstant: 250),
             mainTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
@@ -94,16 +82,13 @@ final class TrainViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionViewDataSource
-
+// MARK: - UICollectionViewDataSource
 extension TrainViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         trainings.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TrainCollectionCell.identifier,
                 for: indexPath
@@ -116,9 +101,7 @@ extension TrainViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-
 extension TrainViewController: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let widthPeritem = view.frame.width - 60

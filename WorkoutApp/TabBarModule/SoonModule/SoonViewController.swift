@@ -8,23 +8,18 @@
 import Foundation
 import UIKit
 
-class SoonViewController: UIViewController {
-    
-    //MARK: - SubViews
-    
+final class SoonViewController: UIViewController {
+    // MARK: - Private fields
     private let mainTitle = UILabel()
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
         
         setUpBackArrow()
@@ -32,19 +27,13 @@ class SoonViewController: UIViewController {
     }
     
     private func setUpBackArrow() {
-        
         let backButtonImage = UIImage(systemName: "arrow.left")
         let customBackButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItem = customBackButton
         navigationItem.leftBarButtonItem?.tintColor = .white
     }
-    
-    @objc func goBack() {
-        navigationController?.popViewController(animated: true)
-    }
 
     private func setUpLabel() {
-        
         mainTitle.text = "Soon.."
         mainTitle.textColor = .white
         mainTitle.textAlignment = .center
@@ -52,12 +41,17 @@ class SoonViewController: UIViewController {
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let titleConstraints = [
-        
             mainTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300)
         ]
         
         view.addSubview(mainTitle)
         NSLayoutConstraint.activate(titleConstraints)
+    }
+    
+    // MARK: - Actions
+    @objc
+    private func goBack() {
+        navigationController?.popViewController(animated: true)
     }
 }

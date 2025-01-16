@@ -8,34 +8,27 @@
 import UIKit
 
 final class NutritionViewController: UIViewController {
-    
-    //MARK: - Proprties
-    
+    // MARK: - Variables
     var data = ["Caesar salad", "Caesar salad", "Caesar salad", "Caesar salad", "Caesar salad" ]
     var kcals = ["12", "12", "12", "12", "12"]
     var proteins = ["12", "12", "12", "12", "12"]
     var fats = ["12", "12", "12", "12", "12"]
     var carbs = ["12", "12", "12", "12", "12"]
     
-    //MARK: - SubViews
-    
+    // MARK: - SubViews
     private let mainTitle = UILabel()
     private let tableView = UITableView()
-    private lazy var button = UIButton()
+    private let button = UIButton()
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
         tableView.reloadData()
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
         
         setUpTitle()
@@ -44,7 +37,6 @@ final class NutritionViewController: UIViewController {
     }
     
     private func setUpTitle() {
-        
         mainTitle.text = "Menu choices"
         mainTitle.textColor = .white
         mainTitle.font = .boldSystemFont(ofSize: 32)
@@ -52,7 +44,6 @@ final class NutritionViewController: UIViewController {
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let mainTitleConstraints = [
-            
             mainTitle.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ]
@@ -62,7 +53,6 @@ final class NutritionViewController: UIViewController {
     }
     
     private func setUpTable() {
-        
         tableView.register(NutritionTableCell.self, forCellReuseIdentifier: NutritionTableCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "BackColor")
@@ -82,7 +72,6 @@ final class NutritionViewController: UIViewController {
     }
     
     private func setUpButton() {
-        
         button.backgroundColor = UIColor(named: "Greenn")
         button.setTitle("Add a dish", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -93,7 +82,7 @@ final class NutritionViewController: UIViewController {
         button.addAction(UIAction {[weak self] _ in
             guard let self else { return }
             
-                let vc = AddViewController()
+                let vc = AddDishViewController()
                 vc.delegate = self
                 self.navigationController?.pushViewController(vc, animated: true)
             
@@ -111,10 +100,8 @@ final class NutritionViewController: UIViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
-
+// MARK: - UITableViewDataSource
 extension NutritionViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
     }
@@ -132,14 +119,10 @@ extension NutritionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         72
     }
-    
-  
 }
 
 // MARK: - UITableViewDelegate
-
 extension NutritionViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(SoonViewController(), animated: true)
@@ -147,17 +130,13 @@ extension NutritionViewController: UITableViewDelegate {
 }
 
 // MARK: - AddViewControllerDelegate
-
-extension NutritionViewController: AddViewControllerDelegate {
-
+extension NutritionViewController: AddDishViewControllerDelegate {
     func update(name: String, kcal: String, protein: String, fats: String, carbs: String) {
         self.data.append(name)
         self.kcals.append(kcal)
         self.proteins.append(protein)
         self.fats.append(fats)
         self.carbs.append(carbs)
-        
         tableView.reloadData()
     }
-    
 }

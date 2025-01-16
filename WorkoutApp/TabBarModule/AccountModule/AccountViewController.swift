@@ -8,9 +8,7 @@
 import UIKit
 
 final class AccountViewController: UIViewController {
-    
-    //MARK: - Constant
-    
+    // MARK: - Constant
     private enum Constant {
         enum Collection {
             static let cellHeight = 80.0
@@ -21,14 +19,12 @@ final class AccountViewController: UIViewController {
         }
     }
     
-    //MARK: - Properties
-    
+    // MARK: - Fields
     let titles = ["App settings", "Privacy", "About", "Log out"]
     let images = ["gearshape", "shield", "info.circle", "arrow.right.square.fill"]
     let subTitles = ["App permissions", "Account settings", "Know about our app", "Log out from app"]
     
-    //MARK: - SubViews
-    
+    // MARK: - Private fields
     private let mainTitle = UILabel()
     private let avatarImg = UIImageView()
     private let label = UILabel()
@@ -36,18 +32,14 @@ final class AccountViewController: UIViewController {
     private let labelStack = UIStackView()
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    //MARK: - LifeCycle
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUp()
     }
     
-    //MARK: - SetUp
-    
+    // MARK: - SetUp
     private func setUp() {
-        
         view.backgroundColor = UIColor(named: "BackColor")
         
         setUpMainTitle()
@@ -59,14 +51,12 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpMainTitle() {
-        
         mainTitle.text = "Settings"
         mainTitle.textColor = .white
         mainTitle.font = .boldSystemFont(ofSize: 32)
         mainTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let mainTitleConstraints = [
-            
             mainTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         ]
@@ -76,7 +66,6 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpAvatar() {
-        
         avatarImg.image = UIImage(named: "Avatar")
         avatarImg.contentMode = .scaleAspectFill
         avatarImg.clipsToBounds = true
@@ -86,7 +75,6 @@ final class AccountViewController: UIViewController {
         avatarImg.translatesAutoresizingMaskIntoConstraints = false
         
         let avatarConstraints = [
-            
             avatarImg.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 30),
             avatarImg.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
             avatarImg.heightAnchor.constraint(equalToConstant: 130),
@@ -98,7 +86,6 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpLabel() {
-        
         label.text = "Lionel Messi"
         label.textColor = .white
         label.font = .systemFont(ofSize: 22, weight: .bold)
@@ -106,7 +93,6 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpSubLabel() {
-        
         subLabel.text = "@Golden_ball"
         subLabel.textColor = .lightGray
         subLabel.font = .systemFont(ofSize: 17, weight: .regular)
@@ -114,16 +100,13 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpLabelStack() {
-        
         labelStack.axis = .vertical
         labelStack.spacing = 13
         labelStack.translatesAutoresizingMaskIntoConstraints = false
-        
         labelStack.addArrangedSubview(label)
         labelStack.addArrangedSubview(subLabel)
         
         let stackConstraints = [
-            
             labelStack.leftAnchor.constraint(equalTo: avatarImg.rightAnchor, constant: 30),
             labelStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             labelStack.centerYAnchor.constraint(equalTo: avatarImg.centerYAnchor)
@@ -134,9 +117,7 @@ final class AccountViewController: UIViewController {
     }
     
     private func setUpSettingsView() {
-        
         for index in 0...3 {
-            
             let view = AccountCell()
             view.backgroundColor = UIColor(named: "LightGrayy")
             view.layer.cornerRadius = 15
@@ -144,9 +125,7 @@ final class AccountViewController: UIViewController {
             view.configure(title: titles[index], subTitle: subTitles[index], img: images[index])
             view.translatesAutoresizingMaskIntoConstraints = false
             
-            
             let viewConstraints = [
-                
                 view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: CGFloat(240 + (index * 105))),
                 view.widthAnchor.constraint(equalToConstant: self.view.frame.width - 60),
                 view.heightAnchor.constraint(equalToConstant: 85),
